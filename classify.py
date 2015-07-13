@@ -1,5 +1,5 @@
 import csv, nltk
-
+#read in the data
 categories = {}
 with open('data/384_rated.tsv', 'rb') as f:
   reader = csv.reader(f, delimiter="\t")
