@@ -54,5 +54,3 @@ with open('data/output/freq_stems.csv', 'wb') as csvfile:
   writer = csv.writer(csvfile)
   for count, word in enumerate(engldiclemmas):
     writer.writerow([word, engltextlemmas.count(word), englfreqlist[count], totalfreq, reflfreqlist[count]])
-	
-f.close()
