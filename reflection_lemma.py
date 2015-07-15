@@ -8,10 +8,10 @@ from nltk import FreqDist
 
 #the input files of the reflection corpus and dictionary have to be given as argument, so in terminal what this looks like is python reflection.py reflectiontextfilename.txt reflectionDictionary.txt
 with open(sys.argv[1], 'r') as r:
-	refl = r.read()
+  refl = r.read()
 
 #preprocessing
-tokens = nltk.wordpunct_tokenize(refl.decode('utf8'))
+tokens = nltk.wordpunct_tokenize(refl.decode('utf8', 'ignore'))
 text = nltk.Text(tokens)
 englwords = [w.lower() for w in text if w.isalpha()]
 
@@ -19,17 +19,18 @@ englwords = [w.lower() for w in text if w.isalpha()]
 wordnet_lemmatizer = WordNetLemmatizer()
 engltextlemmas = []
 for word in englwords:
-	engltextlemmas.append(wordnet_lemmatizer.lemmatize(word))
+  engltextlemmas.append(wordnet_lemmatizer.lemmatize(word))
 
 engltextlemmas = sorted(engltextlemmas)
+pprint.pprint(engltextlemmas)
 
 with open(sys.argv[2], 'r') as d:
-	dictionary = d.read().splitlines()
+  dictionary = d.read().splitlines()
 
 #lemmatization of reflection dictionary
 engldiclemmas = []
 for word in dictionary:
-	engldiclemmas.append(wordnet_lemmatizer.lemmatize(word))
+  engldiclemmas.append(wordnet_lemmatizer.lemmatize(word))
 engldiclemmas = sorted(set(engldiclemmas))
 
 #nltk freqdist
@@ -38,8 +39,8 @@ fdistengl = nltk.FreqDist(engltextlemmas)
 #list of frequencies for reflection words
 englfreqlist = []
 for word in engldiclemmas:
-	englfreq = fdistengl.freq(word)
-	englfreqlist.append(englfreq)
+  englfreq = fdistengl.freq(word)
+  englfreqlist.append(englfreq)
 
 #total frequency of all reflection words
 totalfreq = sum(englfreqlist)
@@ -47,8 +48,8 @@ totalfreq = sum(englfreqlist)
 #frequency of a word in only reflection words (in order to have bigger percentages for individual words)
 reflfreqlist = []
 for i in englfreqlist:
-	reflfreq = i / totalfreq
-	reflfreqlist.append(reflfreq)
+  reflfreq = i / totalfreq
+  reflfreqlist.append(reflfreq)
 
 with open('data/output/freq_stems.csv', 'wb') as csvfile:
   writer = csv.writer(csvfile)
