@@ -59,7 +59,7 @@ def cndls_classify(categories):
   for k, v in categories.items():
     print k, len(v), len(v)/3
 
-  print CODING
+  #print CODING
 
   # create the different sets for the classifier
   # for now, we're just going to go with surface and deep
@@ -95,7 +95,8 @@ def cndls_classify(categories):
   '''
 
   reflections = []
-  for (words, sentiment) in reflection_set['self'] + reflection_set['domain']:
+  for (words, sentiment) in reflection_set['surface'] + reflection_set['deep']:
+  #for (words, sentiment) in reflection_set['self'] + reflection_set['domain']:
     #words_filtered = [e.lower() for e in words.split() if len(e) >= 3]
     text2 = nltk.wordpunct_tokenize(words)
     text3 = [w.lower() for w in text2 if w.isalpha()]
@@ -152,7 +153,7 @@ def cndls_classify(categories):
   # print feature_probdist
   # print feature_probdist[('deep', 'contains(opened)')].prob(True)
 
-  print classifier.show_most_informative_features(50)
+  print classifier.show_most_informative_features(1000)
   # show_most_informative_features
 
-cndls_classify(data['integration'])
+cndls_classify(data['depth'])
