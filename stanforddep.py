@@ -22,7 +22,7 @@ for filename in os.listdir(path):
 	#coref for coreference including constituent parsing
 
 	#comment this to do coref
-	proc = CoreNLP("parse", corenlp_jars=["stanford/stanford-corenlp-full-2014-08-27/*"])
+	proc = CoreNLP("parse", corenlp_jars=["stanford/stanford-corenlp-full-2015-04-20/*"])
 	trees = proc.parse_doc(engelhard2)
 	print(trees)
 
