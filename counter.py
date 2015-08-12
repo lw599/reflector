@@ -1,16 +1,14 @@
 '''
 Usage: python counter.py [data file] [output file]
 
-Sample: python counter.py data/open-assessment-per-user-with-scores.csv data/assessment4.txt |more
+Sample: python counter.py data/open-assessment-per-user-with-scores.csv |more
 
 This script takes self assessments from an edX course and scores the text based on key concepts taken from the model answer given.
 '''
 
-import nltk, csv, sys, re
-from nltk import FreqDist
-from nltk.corpus import wordnet as wn
-from nltk.stem.snowball import SnowballStemmer
+import csv, sys, re
 
+'''
 def process(answer):
   #preprocessing
   tokens = nltk.wordpunct_tokenize(answer.decode('utf8', 'ignore'))
@@ -18,19 +16,19 @@ def process(answer):
   words = [w.lower() for w in text if w.isalpha()]
 
   #stemming of input text
-  stemmer = SnowballStemmer("english")
-  textstems = []
-  for word in words:
-    textstems.append(stemmer.stem(word))
+  #stemmer = SnowballStemmer("english")
+  #textstems = []
+  #for word in words:
+  #  textstems.append(stemmer.stem(word))
 
   #textstems = sorted(textstems)
   return textstems
-
 '''
-TODO: Create a lookup dictionary of "approved" words for each assessment.
-How do we handle the set phrases? -> Maybe list them separate from the other terms and search for them in the answer pre-stemming?
+
+#TODO: Create a lookup dictionary of "approved" words for each assessment.
+#How do we handle the set phrases? -> Maybe list them separate from the other terms and search for them in the answer pre-stemming?
 approved = {
-  3: ['lawsuits', 'prosecution', 'International Criminal Court', 'sanctions', 'U.N. Security Council', 'military force'],
+  3: [r'\blaw\w*\b', r'\bprosecut\w*\b', r'International Criminal Court', r'\bsanction\w*\b', (r'U\W?N\W?|Security Council', r'military|force')],
   4: ['patterns', 'simplicity', 'operations', 'personnel', 'recruitment', 'fundraising', 'existing', 'old', 'current', 'technology', 'commercial', 'trace', 'incriminating'],
   5: ['hide', 'population', 'casualties', 'suffer', 'popular', 'goals', 'compelled', 'irrelevant', 'recruits', 'money'],
   6: ['Preamble', 'security', 'Union', 'Constitution', 'powers', 'Congress', 'President', 'POTUS', 'defense', 'welfare', 'commerce', 'nations', 'piracies', 'felons', 'declare war', 'marque', 'reprisal', 'army', 'Navy', 'naval', 'militia', 'insurrections', 'invasions', 'Commander in Chief', 'Senate', 'treaties', 'Youngstown'],
@@ -47,17 +45,13 @@ approved = {
   18: ['proliferation', 'Kapur', 'subcontinent', 'low-intensity', 'conflict', 'Ganguly', 'deterrent', 'comparison', 'Pakistan', 'Islamic', 'militants', 'impunity', 'punitive', 'conventional', 'India', 'Indo-Pakistan', 'war', 'terrorist'],
   19: ['IL', 'traditionally', 'states', 'countries', 'actors', 'system', 'persons', 'non-state', 'participants', 'rights', 'responsibilities', 'inadequate', 'mechanisms', 'creating', 'implementing', 'rules', 'situations', 'swift', 'global', 'politics', 'definition', 'cases']
 }
-  
-  
-
 '''
-
 # stem the approved dictionary
 with open(sys.argv[2], 'r') as f:
   approved = f.read()
   stemmed_approved = process(approved)
   print stemmed_approved
-
+'''
 # stem the answers
 # TODO: make sure we look up the proper assessment list for each item! right now it's just going off the assessment4.txt file.
 with open(sys.argv[1], 'r') as f:
@@ -66,14 +60,17 @@ with open(sys.argv[1], 'r') as f:
     assessment = row[1]
     final = {}
     answer = row[3]
-    result = process(answer)
+    for regex in approved[3]:
+      print re.findall(regex,answer)
+'''
+    #result = process(answer)
     intersected_words = list(set(result) & set(stemmed_approved))
     print intersected_words
-    
-    '''
+'''    
+'''
     words = nltk.tokenize.word_tokenize(answer)
     fdist = FreqDist(words)
     for k, v in fdist.items():
       if k in approved:
         final[k] = v
-    '''
+'''
