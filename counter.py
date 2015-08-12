@@ -28,10 +28,28 @@ def process(answer):
 
 '''
 TODO: Create a lookup dictionary of "approved" words for each assessment.
+How do we handle the set phrases? -> Maybe list them separate from the other terms and search for them in the answer pre-stemming?
 approved = {
-  1: ['approved', 'blah', 'third'],
-  2: [
+  3: ['lawsuits', 'prosecution', 'International Criminal Court', 'sanctions', 'U.N. Security Council', 'military force'],
+  4: ['patterns', 'simplicity', 'operations', 'personnel', 'recruitment', 'fundraising', 'existing', 'old', 'current', 'technology', 'commercial', 'trace', 'incriminating'],
+  5: ['hide', 'population', 'casualties', 'suffer', 'popular', 'goals', 'compelled', 'irrelevant', 'recruits', 'money'],
+  6: ['Preamble', 'security', 'Union', 'Constitution', 'powers', 'Congress', 'President', 'POTUS', 'defense', 'welfare', 'commerce', 'nations', 'piracies', 'felons', 'declare war', 'marque', 'reprisal', 'army', 'Navy', 'naval', 'militia', 'insurrections', 'invasions', 'Commander in Chief', 'Senate', 'treaties', 'Youngstown'],
+  7: ['status', 'operational network', 'mission', 'self-defense', 'control', 'attack', 'damage', 'recruit', 'fundraise', 'resource', 'targeting', 'goals'],
+  8: ['Afghanistan', 'Pakistan', 'Sudan', 'train', 'plan', 'organize', 'army', 'insurgencies', 'attack', 'counterterrorist', 'loss', 'constituents', 'regime', 'Hamas', 'Hizbollah'],
+  9: ['wrong', 'mindless', 'neutral', 'indiscriminately', 'rules', 'misguided', 'evil', 'corrupt', 'redemption', 'cause', 'Manichean', 'innocent', 'freedom', 'murderous', 'criminal', 'civilian'],
+  10: ['enemy', 'vulnerabilities', 'democratic', 'regime', 'vulnerable', 'attrition', 'strategy', 'loss', 'soldiers', 'cost', 'war', 'withdrawal', 'insurgency', 'propaganda of the deed', 'violence', 'Lone Wolf', 'Spoiler', 'negotiations', 'mass'],
+  11: ['jihad', 'weapon', 'Sunni', 'Shii', 'forbidden', 'martyrdom', '1983 Hezbollah U.S. Marine Barracks bombing', ' Palestinian intifada', 'power', 'tactic', 'debate', 'civilians', 'Islamic law'], 
+  13: ['movement', 'Pakistan', 'arguments', 'British', 'decolonize', 'Asia', 'Muslims', 'Hindus', 'autonomous', 'state', 'nation-state', 'partition', 'Muslim League', 'Indian National Congress', 'ideology', 'struggle', 'legitimacy', 'India'],
+  14: ['independence', 'constitution', 'Usmani', 'movement', 'Pakistan', 'Khan', 'assembly', '1949', 'ideologically', 'Islamic state', 'preamble', 'secular', 'Allah', 'legislators', 'democracy', 'freedom', 'equality', 'tolerance', 'justice', 'Muslims', 'Quran', 'Sunnah'],
+  15: ['French', 'France', 'positive', 'connotation', 'social order', 'fear', 'state', 'sub-state', 'anarchist', 'anti-monarchical', 'revolutionary', 'movements', '1900s', 'separatist', '20th century', 'Nazi', 'USSR', 'Stalin', 'repressive', '1950s', 'rebels', 'nationalists', 'anti-colonialist', '1980s', 'extremist', 'radical', 'religious', 'fanatic', '21st century', 'sponsor', 'negative', 'abolish', 'perpetrator', 'victim'],
+  16: ['Sunni', 'Salafism', 'rebel', 'ruler', 'Muslim', 'unbeliever', 'sharia', 'resistance', 'Salafis'],
+  17: ['1974', 'Bhutto', 'critics', 'non-Muslim', 'Pakistan', 'finality', 'Prophet', 'living', 'apostate', 'quotidian', 'religious', 'Quran', 'kill', 'murder', 'movement'],
+  18: ['proliferation', 'Kapur', 'subcontinent', 'low-intensity', 'conflict', 'Ganguly', 'deterrent', 'comparison', 'Pakistan', 'Islamic', 'militants', 'impunity', 'punitive', 'conventional', 'India', 'Indo-Pakistan', 'war', 'terrorist'],
+  19: ['IL', 'traditionally', 'states', 'countries', 'actors', 'system', 'persons', 'non-state', 'participants', 'rights', 'responsibilities', 'inadequate', 'mechanisms', 'creating', 'implementing', 'rules', 'situations', 'swift', 'global', 'politics', 'definition', 'cases']
 }
+  
+  
+
 '''
 
 # stem the approved dictionary
