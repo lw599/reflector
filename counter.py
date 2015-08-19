@@ -28,7 +28,7 @@ def process(answer):
 #TODO: Create a lookup dictionary of "approved" words for each assessment.
 #How do we handle the set phrases? -> Maybe list them separate from the other terms and search for them in the answer pre-stemming?
 approved = {
-  3: [r'\blaw\w*\b', r'\bprosecut\w*\b', r'International Criminal Court', r'\bsanction\w*\b', (r'U\W?N\W?|Security Council', r'military|force')],
+  3: [r'\blaw\w*\b', r'\bprosecut\w*\b', r'International Criminal Court', r'\bsanction\w*\b', r'U\W?N\W?|Security Council', r'military|force'],
   4: ['patterns', 'simplicity', 'operations', 'personnel', 'recruitment', 'fundraising', 'existing', 'old', 'current', 'technology', 'commercial', 'trace', 'incriminating'],
   5: ['hide', 'population', 'casualties', 'suffer', 'popular', 'goals', 'compelled', 'irrelevant', 'recruits', 'money'],
   6: ['Preamble', 'security', 'Union', 'Constitution', 'powers', 'Congress', 'President', 'POTUS', 'defense', 'welfare', 'commerce', 'nations', 'piracies', 'felons', 'declare war', 'marque', 'reprisal', 'army', 'Navy', 'naval', 'militia', 'insurrections', 'invasions', 'Commander in Chief', 'Senate', 'treaties', 'Youngstown'],

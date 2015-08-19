@@ -15,7 +15,7 @@ for filename in os.listdir(path):
     engelhard = f.read()
     engelhard2 = engelhard.decode('utf8', 'ignore')
     trees = proc.parse_doc(engelhard2)
-  #  print(engelhard2)
+    print(engelhard2)
 
   #this is set as parse (parsing with named entity recognition) but you can also change it to different options, like:
   #ssplit for tokenization and sentence splitting
